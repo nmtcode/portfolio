@@ -2,18 +2,21 @@ import type { Project } from "./Projects";
 
 // (1) سحب كل الصور من مجلد معين تلقائياً
 // حدد المسار الصحيح لمجلد الصور الخاص بمشروع DVLD
+// ✅ التعديل الصحيح للمسارات
 const dvldImages = import.meta.glob(
-  "/public/projects/dvld/*.{png,jpg,jpeg,webp}",
-  { eager: true, as: "url" },
-);
-const ulmsImages = import.meta.glob(
-  "/public/projects/ulms/*.{png,jpg,jpeg,webp}",
-  { eager: true, as: "url" },
+  "/projects/dvld/*.{png,jpg,jpeg,webp}", // أزلنا /public
+  { eager: true, query: "?url", import: "default" }, // الطريقة الأضمن لـ Vite 5+
 );
 
-// (2) تحويل الكائنات المستوردة إلى مصفوفة روابط (Strings)
-const dvldScreenshots = Object.values(dvldImages);
-const ulmsScreenshots = Object.values(ulmsImages);
+const ulmsImages = import.meta.glob("/projects/ulms/*.{png,jpg,jpeg,webp}", {
+  eager: true,
+  query: "?url",
+  import: "default",
+});
+
+// تحويل الكائنات إلى مصفوفة
+const dvldScreenshots = Object.values(dvldImages) as string[];
+const ulmsScreenshots = Object.values(ulmsImages) as string[];
 
 export const PROJECTS_DATA: Project[] = [
   {
