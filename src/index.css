@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme {
+  /* ألوان الموقع الأساسية - Dark Mode Profile */
+  --color-main-bg: #020617;
+  --color-surface: #0f172a;
+
+  /* الألوان الوظيفية (Functional Colors) */
+  --color-accent: #64ffda; /* الأخضر الفسفوري للـ Backend والقوائم */
+  --color-frontend: #ef4444; /* الأحمر لقسم الـ Frontend Artistry */
+  --color-text-main: #f8fafc;
+  --color-text-muted: #94a3b8;
+
+  /* تأثيرات الخطوط */
+  --font-inter: "Inter", sans-serif;
+  --font-mono:
+    "Fira Code", "JetBrains Mono", monospace; /* مهم جداً لستايل الـ Terminal */
+}
+
+@layer base {
+  :root {
+    background-color: var(--color-main-bg);
+    color: var(--color-text-main);
+    scroll-behavior: smooth;
+    font-family: var(--font-inter);
+  }
+
+  /* تخصيص الـ Selection (التظليل) */
+  ::selection {
+    background-color: rgba(100, 255, 218, 0.2);
+    color: var(--color-accent);
+  }
+
+  /* تخصيص السكرول بار ليناسب فخامة الموقع */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-main-bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent);
+  }
+}
+
+/* أنيميشن مخصص لشريط المهارات */
+@keyframes fill-width {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--target-width);
+  }
+}
+
+.animate-fill-width {
+  animation: fill-width 1.5s ease-out forwards;
+}
