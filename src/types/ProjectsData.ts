@@ -1,14 +1,11 @@
 import type { Project } from "./Projects";
-
-// (1) سحب كل الصور من مجلد معين تلقائياً
-// حدد المسار الصحيح لمجلد الصور الخاص بمشروع DVLD
-// ✅ التعديل الصحيح للمسارات
+// لاحظ استخدام ../assets لأننا داخل src/data أو ما شابه
 const dvldImages = import.meta.glob(
-  "/projects/dvld/*.{png,jpg,jpeg,webp}", // أزلنا /public
-  { eager: true, query: "?url", import: "default" }, // الطريقة الأضمن لـ Vite 5+
+  "../assets/projects/dvld/*.{png,jpg,jpeg,webp}", 
+  { eager: true, import: 'default' }
 );
 
-const ulmsImages = import.meta.glob("/projects/ulms/*.{png,jpg,jpeg,webp}", {
+const ulmsImages = import.meta.glob("../assets/projects/ulms/*.{png,jpg,jpeg,webp}", {
   eager: true,
   query: "?url",
   import: "default",
